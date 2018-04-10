@@ -1,20 +1,61 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+  <hot-table
+    class="hot"
+    [height]="500"
+    [hotId]="instance"
+    (afterChange)="onHotChange()"></hot-table>
+  <div class="workspace">
+    <form class="operators" (submit)="dump()">
+      <fieldset>
+        <label>类型</label>
+        <label>
+          <input
+            type="radio"
+            name="root"
+            [(ngModel)]="root"
+            [value]="availableRoots.Object"
+            (change)="rootChange()">
+          Object
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="root"
+            [(ngModel)]="root"
+            [value]="availableRoots.Array"
+            (change)="rootChange()">
+          Array
+        </label>
+      </fieldset>
+      <ng-container *ngIf="root === availableRoots.Array">
+        <fieldset>
+          <label for="group-by">group by</label>
+          <input id="group-by" type="text" name="groupBy" class="form-control" [(ngModel)]="groupBy">
+          <input id="group-value-is-number" type="checkbox" name="groupValueIsNumber" [(ngModel)]="groupValueIsNumber">
+          <label for="group-value-is-number">is number</label>
+          |
+          <input id="ignore-header" type="checkbox" name="ignoreHeaderRow" [(ngModel)]="ignoreHeaderRow">
+          <label for="ignore-header">ignore header row</label>
+          <div>
+            <label for="group-key">group key</label>
+            <input id="group-key" type="text" name="groupKey" class="form-control" [(ngModel)]="groupKey">
+          </div>
+        </fieldset>
+      </ng-container>
+      <fieldset>
+        <label for="mapper">properties mapper</label>
+        <textarea
+          name="mapper"
+          id="mapper"
+          rows="10"
+          placeholder="1->abc"
+          class="form-control"
+          [(ngModel)]="mapRules"
+        ></textarea>
+      </fieldset>
+      <input type="submit" class="btn btn-primary" value="dump">
+      <button type="button" class="btn" (click)="copy()">copy result</button>
+    </form>
+    <pre class="showcase"><code class="preview">{{ result | json }}</code></pre>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-

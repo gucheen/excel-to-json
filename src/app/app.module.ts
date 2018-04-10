@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
+import { HotTableModule } from '@handsontable/angular';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppComponent } from './app.component';
 
@@ -10,7 +12,10 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HotTableModule.forRoot(),
+    FormsModule,
+    ClipboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

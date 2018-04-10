@@ -1,0 +1,30 @@
+.container {
+  margin: 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hot {
+}
+
+.workspace {
+  display: flex;
+}
+
+.operators {
+  flex: 1;
+}
+
+.showcase {
+  flex: 1;
+  margin: 0;
+  background-color: #f6f8fa;
+}
+
+.preview {
+  max-height: 500px;
+}
+
+#mapper {
+  width: 100%;
+}
